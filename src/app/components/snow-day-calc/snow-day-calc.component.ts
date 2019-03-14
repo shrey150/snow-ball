@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'snow-day-calc',
@@ -7,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SnowDayCalcComponent implements OnInit {
 
-  constructor() { }
+  constructor(public http: HttpClient) {
+    this.fetchData();
+   }
 
   fetchData() {
-    
+    console.log(this.http.get('http://www.snowdaycalculator.com/prediction.php?zipcode=19355'));
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fetchData();
+  }
 
 }
