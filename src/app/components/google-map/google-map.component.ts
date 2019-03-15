@@ -1,4 +1,5 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 declare var google;
 
@@ -7,32 +8,31 @@ declare var google;
   templateUrl: './google-map.component.html',
   styleUrls: ['./google-map.component.scss'],
 })
-export class GoogleMapComponent implements OnInit {
+export class GoogleMapComponent {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
 
-  ngOnInit() {
+  constructor (private geolocation: Geolocation) {
     this.loadMap();
   }
 
   loadMap() {
 
-    console.log('hi');
+    this.geolocation.getCurrentPosition().then(pos => {
 
-    const latLng = new google.maps.LatLng(-34.9290, 138.6010);
+      const latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 
-    const mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+      const mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+    });
 
   }
-
-  constructor() { }
-
 
 }

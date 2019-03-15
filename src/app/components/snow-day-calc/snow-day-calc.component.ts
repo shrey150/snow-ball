@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -6,18 +6,16 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './snow-day-calc.component.html',
   styleUrls: ['./snow-day-calc.component.scss'],
 })
-export class SnowDayCalcComponent implements OnInit {
+export class SnowDayCalcComponent {
 
   constructor(public http: HttpClient) {
     this.fetchData();
    }
 
   fetchData() {
-    console.log(this.http.get('http://www.snowdaycalculator.com/prediction.php?zipcode=19355'));
-  }
-
-  ngOnInit() {
-    this.fetchData();
+    this.http.get('http://localhost:3000/calc?zipcode=19355').subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
