@@ -1,3 +1,4 @@
+import { SnowDayCalcComponent } from './../components/snow-day-calc/snow-day-calc.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

@@ -14,6 +14,6 @@ import { GoogleMapComponent } from '../components/google-map/google-map.componen
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],
-  declarations: [Tab1Page, GoogleMapComponent, SnowDayCalcComponent]
+  declarations: [Tab1Page, GoogleMapComponent]
 })
 export class Tab1PageModule {}

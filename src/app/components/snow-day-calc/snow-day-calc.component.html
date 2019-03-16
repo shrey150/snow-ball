@@ -1,5 +1,10 @@
 <ion-card>
   <ion-card-header>
-    Hi
+      <ion-card-subtitle>Powered by snowdaycalculator.com</ion-card-subtitle>
+      <ion-card-title><h1>{{chance}}% chance</h1></ion-card-title>
   </ion-card-header>
+  
+  <ion-card-content>
+    <p #update id="message">{{message}}</p>
+  </ion-card-content>
 </ion-card>
