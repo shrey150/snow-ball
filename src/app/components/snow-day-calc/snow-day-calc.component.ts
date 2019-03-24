@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface SnowData {
-  chance?: Array<number>;
+  chance?: number;
   updateTime?: string;
 }
 
@@ -24,8 +24,8 @@ export class SnowDayCalcComponent {
   fetchData() {
     this.http.get('http://localhost:3000/api/calc?zipcode=19355').subscribe((res: SnowData) => {
       console.log(res);
-      if (res.chance[0] < 0) { res.chance[0] = 0; }
-      this.chance = String(res.chance[0]);
+      if (res.chance < 0) { res.chance = 0; }
+      this.chance = String(res.chance);
       this.message = res.updateTime;
     });
   }
