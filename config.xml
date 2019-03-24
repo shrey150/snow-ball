@@ -87,5 +87,6 @@
         <variable name="API_KEY_FOR_IOS" value="AIzaSyCZ4yuDfI5c8mdmhdtVwVuESQTm6ci7nHw" />
     </plugin>
     <plugin name="cordova-plugin-geolocation" spec="4.0.1" />
+    <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <engine name="android" spec="7.1.4" />
 </widget>

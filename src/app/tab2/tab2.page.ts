@@ -1,5 +1,6 @@
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Component } from '@angular/core';
 
 import * as firebase from 'firebase';
 
@@ -10,24 +11,39 @@ import * as firebase from 'firebase';
 })
 export class Tab2Page {
 
-  // @ViewChild('reportType') reportType: ElementRef;
   db: any;
   reportType: any;
 
-  constructor(private geolocation: Geolocation) {
+  constructor(private geolocation: Geolocation, private camera: Camera) {
     this.db = firebase.database();
+  }
+
+  takePicture(): void {
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+
+    this.camera.getPicture(options).then(imageData => {
+     // const base64Image = 'data:image/jpeg;base64,' + imageData;
+     console.log(imageData);
+    }, err => console.log('error taking pic'));
+
   }
 
   sendReport(): void {
 
     this.geolocation.getCurrentPosition().then(pos => {
 
-      this.db.ref("/markers").push({
+      this.db.ref('/markers').push({
         lat: pos.coords.latitude,
         long: pos.coords.longitude,
         type: this.reportType
       })
-      .then(() => console.log("report sent"));
+      .then(() => console.log('report sent'));
 
     });
 

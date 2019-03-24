@@ -1,3 +1,4 @@
+import { Camera } from '@ionic-native/camera/ngx';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,10 @@ import { SnowDayCalcComponent } from '../components/snow-day-calc/snow-day-calc.
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab2Page }]),
   ],
-  declarations: [Tab2Page, SnowDayCalcComponent]
+  declarations: [Tab2Page, SnowDayCalcComponent],
+  providers: [
+    Camera
+  ]
 })
 
 export class Tab2PageModule {}
