@@ -13,6 +13,7 @@ export class Tab2Page {
 
   db: any;
   reportType: any;
+  image: String;
 
   constructor(private geolocation: Geolocation, private camera: Camera) {
     this.db = firebase.database();
@@ -20,17 +21,16 @@ export class Tab2Page {
 
   takePicture(): void {
 
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    };
+      const options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      };
 
-    this.camera.getPicture(options).then(imageData => {
-     // const base64Image = 'data:image/jpeg;base64,' + imageData;
-     console.log(imageData);
-    }, err => console.log('error taking pic'));
+      this.camera.getPicture(options).then(imageData => {
+       this.image = imageData;
+      }, err => console.log('error taking pic'));
 
   }
 
@@ -41,7 +41,8 @@ export class Tab2Page {
       this.db.ref('/markers').push({
         lat: pos.coords.latitude,
         long: pos.coords.longitude,
-        type: this.reportType
+        type: this.reportType,
+        img: this.image ? this.image : ''
       })
       .then(() => console.log('report sent'));
 
