@@ -1,0 +1,12 @@
+<ion-card>
+  <ion-card-header>
+      <ion-card-subtitle>Weather data for {{data.name}} ({{zipcode}})</ion-card-subtitle>
+      <ion-card-title><h1>{{data.weather[0].main}} ({{data.weather[0].description}})</h1></ion-card-title>
+  </ion-card-header>
+  
+  <ion-card-content>
+    <h2>{{snow}}</h2>
+    <h2>Temperature: {{temp}}°F</h2>
+    <h2>Wind Speed: {{windSpeed}} mph</h2>
+  </ion-card-content>
+</ion-card>

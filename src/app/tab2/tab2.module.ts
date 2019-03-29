@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
-import { SnowDayCalcComponent } from '../components/snow-day-calc/snow-day-calc.component';
 
 @NgModule({
   imports: [
@@ -14,7 +13,7 @@ import { SnowDayCalcComponent } from '../components/snow-day-calc/snow-day-calc.
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab2Page }]),
   ],
-  declarations: [Tab2Page, SnowDayCalcComponent],
+  declarations: [Tab2Page],
   providers: [
     Camera
   ]
