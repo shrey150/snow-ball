@@ -11,14 +11,14 @@ export class MapPopoverComponent {
 
   @Input() img: string;
   @Input() type: string;
+  @Input() info: string;
+
   @Input() modal: Components.IonModal;
 
-  constructor() { console.log(this.img); }
-
-  closeModal() {
-
-    this.modal.dismiss();
-
+  constructor() {
+    //if (info.length === "") info = "No information given.";
   }
+
+  closeModal() { this.modal.dismiss(); }
 
 }

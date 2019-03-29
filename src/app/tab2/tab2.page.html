@@ -12,8 +12,8 @@
 
     <ion-item>
         <ion-select [(ngModel)]="reportType" placeholder="Report Type">
-            <ion-select-option value="plow_yes">Snow plow reached</ion-select-option>
-            <ion-select-option value="plow_no">Snow plow missing</ion-select-option>
+            <ion-select-option value="plow_yes">Road plowed</ion-select-option>
+            <ion-select-option value="plow_no">Road not plowed</ion-select-option>
             <ion-select-option value="icy_roads">Icy/slippery roads</ion-select-option>
             <ion-select-option value="snowing_yes">Started snowing</ion-select-option>
             <ion-select-option value="snowing_no">Stopped snowing</ion-select-option>
@@ -23,9 +23,13 @@
       <ion-button (click)="sendReport()" [disabled]="!reportType">Report Conditions</ion-button>
     </ion-item>
     <ion-item>
+      <ion-textarea [(ngModel)]="info" placeholder="Add any additional information here"></ion-textarea>
+    </ion-item>
+    <ion-item>
       <ion-button (click)="takePicture()">Take a Picture</ion-button>
     </ion-item>
-    <ion-img [src]="image" [hidden]="!image"></ion-img>
-
+    <ion-item>
+      <ion-img [src]="image" [hidden]="!image"></ion-img>
+    </ion-item>
   </ion-list>
 </ion-content>

@@ -28,12 +28,6 @@ export class GoogleMapComponent {
     this.loadMap();
     this.db = firebase.database();
     this.markers = [];
-
-    const modal = modalController.create({
-      component: MapPopoverComponent
-    });
-
-    //this.openMarker("hi");
   }
 
   // for each marker, remove from map
@@ -41,23 +35,6 @@ export class GoogleMapComponent {
   clearMarkers() {
     this.markers.forEach(el => el.setMap(null));
     this.markers = [];
-  }
-
-  // action when user clicks on empty area of map
-  // used for the location for a report marker
-  selectPoint(e: any) {
-    console.log(e.latLng.lat(), e.latLng.lng());
-  }
-
-  // action when user clicks on a report marker
-  // opens up information about the report
-  async openMarker(e: any) {
-
-    const modal = await this.modalController.create({
-      component: MapPopoverComponent
-    });
-
-    return await modal.present();
   }
 
   // converts crude report type to end-user text
@@ -127,22 +104,25 @@ export class GoogleMapComponent {
             icon: image
           });
 
-          // when you click a report marker, do something
+          // when you click a report marker,
+          // open info about the report
           marker.addListener('click', async e => {
 
+            // create popup window
             var modal = await this.modalController.create({
               component: MapPopoverComponent,
               componentProps: {
                 img: data.img,
                 type: this.prettyPrintReport(data.type),
+                info: data.info,
                 close: modal
               },
             });
 
+            // show popup
             return await modal.present();
 
           });
-          google.maps.event.addListener(this.map, 'click', this.selectPoint);
 
           // add newly created marker to an array
           // this will make clearing all markers easier
