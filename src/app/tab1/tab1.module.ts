@@ -1,3 +1,4 @@
+import { MapPopoverComponent } from './../components/map-popover/map-popover.component';
 import { SnowDayCalcComponent } from './../components/snow-day-calc/snow-day-calc.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
@@ -14,6 +15,9 @@ import { GoogleMapComponent } from '../components/google-map/google-map.componen
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],
-  declarations: [Tab1Page, GoogleMapComponent]
+  declarations: [Tab1Page, GoogleMapComponent, MapPopoverComponent],
+  entryComponents: [
+    MapPopoverComponent
+  ]
 })
 export class Tab1PageModule {}
