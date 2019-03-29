@@ -1,3 +1,4 @@
+import { Base64 } from '@ionic-native/base64/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
@@ -15,7 +16,8 @@ import { Tab2Page } from './tab2.page';
   ],
   declarations: [Tab2Page],
   providers: [
-    Camera
+    Camera,
+    Base64
   ]
 })
 

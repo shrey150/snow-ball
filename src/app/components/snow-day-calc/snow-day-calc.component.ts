@@ -22,7 +22,8 @@ export class SnowDayCalcComponent {
    }
 
   fetchData() {
-    this.http.get('http://localhost:3000/api/calc?zipcode=19355').subscribe((res: SnowData) => {
+    // get snow day data from the API I wrote (hosted on Heroku)
+    this.http.get('http://snowdaybot.herokuapp.com/api/calc?zipcode=19355').subscribe((res: SnowData) => {
       console.log(res);
       if (res.chance < 0) { res.chance = 0; }
       this.chance = String(res.chance);

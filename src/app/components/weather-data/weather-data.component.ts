@@ -31,14 +31,16 @@ export class WeatherDataComponent {
 
   constructor(public http: HttpClient) {
     this.zipcode = 19355;
-    this.appid = "629b95f43a04b13bd903462802159b40";
+    this.appid = '629b95f43a04b13bd903462802159b40';
     this.fetchData();
   }
 
   fetchData() {
-    this.http.get(`http://api.openweathermap.org/data/2.5/weather?zip=${this.zipcode},us&appid=${this.appid}`).subscribe((res: WeatherData) => {
+    // get data from the OpenWeatherMap API at the zipcode and w/ the API key
+    this.http.get(`http://api.openweathermap.org/data/2.5/weather?zip=${this.zipcode},us&appid=${this.appid}`)
+    .subscribe((res: WeatherData) => {
       this.data = res;
-      this.snow = res.snow ? res.snow : "No snow fall expected.";
+      this.snow = res.snow ? res.snow : 'No snow fall expected.';
 
       // convert Kelvin -> Celsius -> Fahrenheit
       const cTemp = res.main.temp - 273.15;
