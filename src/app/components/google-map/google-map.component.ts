@@ -115,6 +115,7 @@ export class GoogleMapComponent {
                 img: data.img,
                 type: this.prettyPrintReport(data.type),
                 info: data.info,
+                time: data.time,
                 close: modal
               },
             });

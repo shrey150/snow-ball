@@ -64,7 +64,8 @@ export class Tab2Page {
         long: pos.coords.longitude,
         type: this.reportType,
         info: this.info ? this.info : '',
-        img: this.image ? this.image : ''
+        img: this.image ? this.image : '',
+        time: new Date().getTime()
       })
       // show alert "success" message
       .then(() => this.presentToast());

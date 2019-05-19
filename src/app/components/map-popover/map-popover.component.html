@@ -8,6 +8,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-img [src]="img" [hidden]="img.length === 0"></ion-img>
-  <ion-text>{{info}}</ion-text>
+  <ion-item>
+    <ion-img [src]="img" [hidden]="img.length === 0"></ion-img>
+  </ion-item>
+  <ion-item>
+    <ion-label text-left>{{info}}</ion-label>
+    <ion-label text-right>{{formattedTime}}</ion-label>
+  </ion-item>
 </ion-content>
