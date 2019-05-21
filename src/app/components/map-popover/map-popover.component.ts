@@ -21,10 +21,13 @@ export class MapPopoverComponent {
   relativeTime: string;
 
   constructor(navParams: NavParams) {
+
+    // set up timestamps that are displayed on screen
     this.relativeTime = moment(navParams.data.time).fromNow();
     this.formattedTime = moment(navParams.data.time).calendar();
   }
 
+  // close pop-up when "close" is clicked
   closeModal() { this.modal.dismiss(); }
 
 }

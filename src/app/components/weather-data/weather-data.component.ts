@@ -39,7 +39,12 @@ export class WeatherDataComponent {
     // get data from the OpenWeatherMap API at the zipcode and w/ the API key
     this.http.get(`http://api.openweathermap.org/data/2.5/weather?zip=${this.zipcode},us&appid=${this.appid}`)
     .subscribe((res: WeatherData) => {
+
+      // display the data
       this.data = res;
+
+      // if the amount of snow isn't specified,
+      // display "no snow fall expected"
       this.snow = res.snow ? res.snow : 'No snow fall expected.';
 
       // convert Kelvin -> Celsius -> Fahrenheit
@@ -49,7 +54,6 @@ export class WeatherDataComponent {
       // convert m/s -> mph
       this.windSpeed = Math.round(res.wind.speed * 2.23694);
 
-      console.log(res);
     });
   }
 

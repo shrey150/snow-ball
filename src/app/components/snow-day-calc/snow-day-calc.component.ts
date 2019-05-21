@@ -19,13 +19,17 @@ export class SnowDayCalcComponent {
 
   constructor(public http: HttpClient) {
     this.fetchData();
+    this.chance = '0';
    }
 
   fetchData() {
     // get snow day data from the API I wrote (hosted on Heroku)
     this.http.get('http://snowdaybot.herokuapp.com/api/calc?zipcode=19355').subscribe((res: SnowData) => {
-      console.log(res);
+
+      // if % chance of snow is negative, just make it 0%
       if (res.chance < 0) { res.chance = 0; }
+
+      // display the snow day data on screen
       this.chance = String(res.chance);
       this.message = res.updateTime;
     });
