@@ -19,7 +19,9 @@ export class GoogleMapComponent {
   db: firebase.database.Database;
 
   map: any;
+  heatmap: any;
   markers: Array<any>;
+  dataPoints: Array<any>;
   markerImgs: Array<string>;
   selectorMarker: any;
 
@@ -30,6 +32,16 @@ export class GoogleMapComponent {
     this.markers = [];
   }
 
+  // make all markers visible
+  showMarkers() {
+    this.markers.forEach(el => el.setVisible(true));
+  }
+
+  // make all markers invisible
+  hideMarkers() {
+    this.markers.forEach(el => el.setVisible(false));
+  }
+
   // for each marker, remove from map
   // clear the marker array
   clearMarkers() {
@@ -37,7 +49,35 @@ export class GoogleMapComponent {
     this.markers = [];
   }
 
-  // converts crude report type to end-user text
+  loadHeatmap() {
+
+    // set up heatmap for frequency of markers
+    this.heatmap = new google.maps.visualization.HeatmapLayer({
+
+      // this gets the LatLng objects needed
+      // to represent points on a heatmap
+      data: this.markers.map(x => x.getPosition()),
+      map: null
+
+    });
+
+  }
+
+  toggleHeatmap() {
+
+    // if heatmap is currently visible,
+    // show the markers in preparation
+    // (since this means the heatmap
+    // will be toggled to not visible)
+    if (this.heatmap.getMap()) this.showMarkers();
+    else                       this.hideMarkers();
+
+    // if the heatmap is already visible, hide it
+    // if it isn't visible, display it on the screen
+    this.heatmap.setMap(this.heatmap.getMap() ? null : this.map);
+  }
+
+  // converts crude report messages to end-user text
   // eg. "snowing_yes" => "Started snowing"
   prettyPrintReport(str: string) {
 
@@ -130,6 +170,10 @@ export class GoogleMapComponent {
           this.markers.push(marker);
 
         });
+
+        // load the heatmap after updating markers
+        this.loadHeatmap();
+
       });
 
     });

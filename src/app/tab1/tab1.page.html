@@ -3,9 +3,14 @@
     <ion-title>
       Map
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="this.map.toggleHeatmap()">
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <google-map></google-map>
+    <google-map #map></google-map>
 </ion-content>

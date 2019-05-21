@@ -46,7 +46,8 @@ export class Tab2Page {
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Report sent!',
-      duration: 2000
+      duration: 2000,
+      position: 'top'
     });
     toast.present();
   }
@@ -67,8 +68,17 @@ export class Tab2Page {
         img: this.image ? this.image : '',
         time: new Date().getTime()
       })
-      // show alert "success" message
-      .then(() => this.presentToast());
+      .then(() => {
+
+        // show alert "success" message
+        this.presentToast();
+
+        // clear form
+        this.reportType = '';
+        this.image = '';
+        this.info = '';
+
+      });
 
     });
 
