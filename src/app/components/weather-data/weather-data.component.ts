@@ -29,8 +29,9 @@ export class WeatherDataComponent {
   temp: number;
   windSpeed: number;
 
+  // set up weather data variables
   constructor(public http: HttpClient) {
-    this.zipcode = 19355;
+    this.zipcode = 17013;
     this.appid = '629b95f43a04b13bd903462802159b40';
     this.fetchData();
   }
