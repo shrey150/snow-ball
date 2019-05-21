@@ -28,10 +28,11 @@ export class Tab2Page {
       // set up camera options
       // picture quality, file type, etc
       const options: CameraOptions = {
-        quality: 100,
+        quality: 50,
         destinationType: this.camera.DestinationType.FILE_URI,
         encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE
+        mediaType: this.camera.MediaType.PICTURE,
+        targetHeight: 1280
       };
 
       // take picture and save image data

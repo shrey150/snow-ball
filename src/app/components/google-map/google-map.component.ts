@@ -57,7 +57,8 @@ export class GoogleMapComponent {
       // this gets the LatLng objects needed
       // to represent points on a heatmap
       data: this.markers.map(x => x.getPosition()),
-      map: null
+      map: null,
+      radius: 50
 
     });
 
