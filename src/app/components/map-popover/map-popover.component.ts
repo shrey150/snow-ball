@@ -18,9 +18,11 @@ export class MapPopoverComponent {
   @Input() modal: Components.IonModal;
 
   formattedTime: string;
+  relativeTime: string;
 
   constructor(navParams: NavParams) {
-    this.formattedTime = moment(navParams.data.time).fromNow();
+    this.relativeTime = moment(navParams.data.time).fromNow();
+    this.formattedTime = moment(navParams.data.time).calendar();
   }
 
   closeModal() { this.modal.dismiss(); }

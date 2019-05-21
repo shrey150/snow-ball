@@ -3,13 +3,19 @@
     <ion-title>
       Report
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="takePicture()">
+        <ion-icon slot="icon-only" name="attach"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ion-item>
-        <ion-select [(ngModel)]="reportType" placeholder="Report Type">
+        <ion-label>Type of report</ion-label>
+        <ion-select [(ngModel)]="reportType" placeholder="Choose">
             <ion-select-option value="plow_yes">Road plowed</ion-select-option>
             <ion-select-option value="plow_no">Road not plowed</ion-select-option>
             <ion-select-option value="icy_roads">Icy/slippery roads</ion-select-option>
@@ -18,16 +24,11 @@
           </ion-select>
     </ion-item>
     <ion-item>
-      <ion-button (click)="sendReport()" [disabled]="!reportType">Report Conditions</ion-button>
-    </ion-item>
-    <ion-item>
       <ion-textarea [(ngModel)]="info" placeholder="Add any additional information here"></ion-textarea>
     </ion-item>
-    <ion-item>
-      <ion-button (click)="takePicture()">Take a Picture</ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-img [src]="image" [hidden]="!image"></ion-img>
+    <ion-item [hidden]="!image">
+      <ion-img [src]="image"></ion-img>
     </ion-item>
   </ion-list>
+  <ion-button (click)="sendReport()" [disabled]="!reportType">Report Conditions</ion-button>
 </ion-content>
